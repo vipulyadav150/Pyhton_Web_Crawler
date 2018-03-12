@@ -7,7 +7,7 @@ def spider_spoj(max_pages):
     start = 0
     while page <= max_pages:
          url = 'http://www.spoj.com/problems/classical/sort=6,start=' + str(start)
-         print(url)
+         print("Page link : "+ url)
          main_links_len = 0
          source_code_main = requests.get(url)
          print(source_code_main)
@@ -25,8 +25,8 @@ def spider_spoj(max_pages):
                      prob_title = useable.string
                      print("Problem : " + prob_title)
                      print(prob_link)
-                     main_links_len = main_links_len + 1
-                 print(main_links_len)
+
+
 
 
 
