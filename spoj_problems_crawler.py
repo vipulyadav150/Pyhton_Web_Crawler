@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 def spider_spoj(max_pages):
     page = 1
     start = 0
+    fw = open("Colletions.txt",'w')
     while page <= max_pages:
          url = 'http://www.spoj.com/problems/classical/sort=6,start=' + str(start)
          print("Page link : "+ url)
@@ -20,11 +21,16 @@ def spider_spoj(max_pages):
                  for row in link_one.findAll('td',{'align':'left'}):
                      main_part = row.findAll('a')
                      useable = main_part[0]
+
                      #for linkers in useable.findAll('href'):
                      prob_link = "http://www.spoj.com/problems/" + useable.get('href')
                      prob_title = useable.string
+                     prob_link_up = "Problem : " + prob_title
+
                      print("Problem : " + prob_title)
                      print(prob_link)
+                     fw.write(prob_link_up + '\n')
+                     fw.write(prob_link + '\n')
 
 
 
@@ -34,6 +40,7 @@ def spider_spoj(max_pages):
 
          page +=1
          start +=50
+    fw.close()
 inp_pages = int(input("Enter the Number of Pages to crawl : \n"))
 spider_spoj(inp_pages)
 
